@@ -1,5 +1,5 @@
 <?php
-
+require_once('../config/db.php');
 // Get values from form
 $fname=$POST['fname'];
 $mname=$POST['mname'];
@@ -29,7 +29,9 @@ $pw=$POST['pw'];
 
 //DB insert st are here
 
+$stmt = $db->prepare('INSERT INTO Persons (firstname, lastname, age) VALUES (:first_name, :last_name, :age)');
 
+$stmt->execute(array(':first_name' => $first_name, ':last_name' => $last_name, ':age' => $age));
 
 //Send a confirmation email
 $to = "youremail@gmail.com";
