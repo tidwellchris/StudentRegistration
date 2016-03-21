@@ -30,6 +30,7 @@ $pw=$POST['pw'];
 //DB insert st are here
 
 
+
 //Send a confirmation email
 $to = "youremail@gmail.com";
 $subject = "Future Tutorials Contact Form Test";
