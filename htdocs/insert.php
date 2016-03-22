@@ -33,24 +33,25 @@ $stmt = $db->prepare('INSERT INTO Persons (firstname, lastname, age) VALUES (:fi
 
 $stmt->execute(array(':first_name' => $first_name, ':last_name' => $last_name, ':age' => $age));
 
-//Send a confirmation email
-$to = "youremail@gmail.com";
-$subject = "Future Tutorials Contact Form Test";
-$message = " Name: " . $name . "\r\n City: " . $city . "\r\n Phone: " . $phone . "\r\n Email: " . $email;
-
-
-$from = "FutureTutorials";
-$headers = "From:" . $from . "\r\n";
-$headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
-
-if(@mail($to,$subject,$message,$headers))
-{
-  print "<script>document.location.href='http://demo.ftutorials.com/html5-contact-form/success.html';</script>";
-  // Created by Future Tutorials
-}else{
-  echo "Error! Please try again.";
-}
-
-
+$db->disconnect();
+//Send a confirmation email in complete loop
+// $to = "youremail@gmail.com";
+// $subject = "You Have Successfully Registered";
+// $message = " Hi " . $fname . "\r\n City: " . $city . "\r\n Phone: " . $phone . "\r\n Email: " . $email;
+//
+//
+// $from = "info@gsoponline.org";
+// $headers = "From:" . $from . "\r\n";
+// $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
+//
+// if(@mail($to,$subject,$message,$headers))
+// {
+//   print "<script>document.location.href='http://demo.ftutorials.com/html5-contact-form/success.html';</script>";
+//   // Created by Future Tutorials
+// }else{
+//   echo "Error! Please try again.";
+// }
+//
+//
 
 ?>
