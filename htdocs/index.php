@@ -16,7 +16,7 @@
 	<div id="form_container">
 
 		<h1><a>GSOP Registration</a></h1>
-		<form id="form_1115316" class="appnitro"  method="post" action="">
+		<form id="form_1115316" class="appnitro"  method="post" action="insert.php">
 					<div class="form_description">
 			<h2>GSOP Registration</h2>
 			<p>New Student Registration Form</p>
@@ -99,16 +99,16 @@
 		<div>
 		<select class="element select medium" id="campus" name="campus">
 			<option value="" selected="selected"></option>
-<option value="1" >Avondale Campus</option>
-<option value="2" >Buford Campus</option>
-<option value="3" >Dasher Campus</option>
-<option value="4" >Elijay Campus</option>
-<option value="5" >Fayetteville Campus</option>
-<option value="6" >Marietta Campus</option>
-<option value="7" >Moultrie Campus</option>
-<option value="8" >Munford/Alabama Campus</option>
-<option value="9" >Villa Rica Campus</option>
-<option value="10" >Warner Robins Campus</option>
+<option value="10" >Avondale Campus</option>
+<option value="3" >Buford Campus</option>
+<option value="6" >Dasher Campus</option>
+<option value="9" >Elijay Campus</option>
+<option value="13" >Fayetteville Campus</option>
+<option value="2" >Marietta Campus</option>
+<option value="11" >Moultrie Campus</option>
+<option value="12" >Munford/Alabama Campus</option>
+<option value="5" >Villa Rica Campus</option>
+<option value="7" >Warner Robins Campus</option>
 
 		</select>
 	</div><p class="guidelines" id="campus"><small>Indicate the campus you will go to the most</small></p>
@@ -201,7 +201,7 @@
 		<label class="description" for="element_7">Primary Phone Number </label>
 		<span>
 			<input id="element_7_1" name="element_7_1" class="element text" size="3" maxlength="3" value="" type="text"> -
-			<label for="element_7_1">(###)</label>
+			<label for="element_7_1">###</label>
 		</span>
 		<span>
 			<input id="element_7_2" name="element_7_2" class="element text" size="3" maxlength="3" value="" type="text"> -
@@ -251,7 +251,7 @@
 		<label class="description" for="element_12">Emergency Contact Phone Number </label>
 		<span>
 			<input id="element_12_1" name="element_12_1" class="element text" size="3" maxlength="3" value="" type="text"> -
-			<label for="element_12_1">(###)</label>
+			<label for="element_12_1">###</label>
 		</span>
 		<span>
 			<input id="element_12_2" name="element_12_2" class="element text" size="3" maxlength="3" value="" type="text"> -
@@ -266,7 +266,7 @@
 		<label class="description" for="element_13">Emergency Contact Phone Number 2 </label>
 		<span>
 			<input id="element_13_1" name="element_13_1" class="element text" size="3" maxlength="3" value="" type="text"> -
-			<label for="element_13_1">(###)</label>
+			<label for="element_13_1">###</label>
 		</span>
 		<span>
 			<input id="element_13_2" name="element_13_2" class="element text" size="3" maxlength="3" value="" type="text"> -
@@ -288,6 +288,16 @@
 			<input id="medical" name="medical" class="element text medium" type="text" maxlength="255" value=""/>
 		</div>
 		</li>
+	</li>		<li id="li_19" >
+	<label class="description" for="uname">Desired Username</label>
+	<div>
+		<input id="uname" name="uname" class="element text medium" type="text" maxlength="50" value=""/>
+	</div><p class="guidelines" id="uname"><small>Desired Username</small></p>
+</li>		<li id="li_20" >
+<label class="description" for="pw">Password</label>
+<div>
+	<input id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/>
+</div><p class="guidelines" id="pw"><small>Password</small></p>
 
 					<li class="buttons">
 			    <input type="hidden" name="form_id" value="1115316" />

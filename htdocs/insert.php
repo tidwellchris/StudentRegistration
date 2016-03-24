@@ -1,39 +1,76 @@
 <?php
 require_once('../config/db.php');
 // Get values from form
-$fname=$POST['fname'];
-$mname=$POST['mname'];
-$lname=$POST['lname'];
-$nname=$POST['nname'];
-$gender=$POST['gender'];
-$dob=$POST['element_9'];
-$lang=$POST['lang'];
-$slang=$POST['slang'];
-$campus=$POST['campus'];
-$cpath=$POST['cpath'];
-$st_address=$POST['st_address'];
-$city=$POST['city'];
-$state=$POST['state'];
-$zip=$POST['zip'];
-$phone=$POST['element_7']; //phone number
-$email=$POST['email'];
-$erelat=$POST['econtact_relat']; //Emergency Information Begin
-$efname=$POST['efname'];
-$elname=$POST['elname'];
-$ephn1=$POST['element_12'];
-$ephn2=$POST['element_13'];
-$eemail=$POST['eemail']; //Emergency Information End
-$medical=$POST['medical'];
-$uname=$POST['uname'];
-$pw=$POST['pw'];
+$fname=$_POST['fname'];
+$mname=$_POST['mname'];
+$lname=$_POST['lname'];
+$nname=$_POST['nname'];
+$gender=$_POST['gender'];
+$dob=$_POST['element_9_3'] . '-' . $_POST['element_9_1'] . '-' . $_POST['element_9_2'];
+$lang=$_POST['lang'];
+$slang=$_POST['slang'];
+$campus=$_POST['campus'];
+$cpath=$_POST['cpath'];
+$st_address=$_POST['st_address'];
+$city=$_POST['city'];
+$state=$_POST['state'];
+$zip=$_POST['zip'];
+$phone=$_POST['element_7_1'] . '-' . $_POST['element_7_2'] . '-' . $_POST['element_7_3']; //phone number
+$email=$_POST['email'];
+$erelat=$_POST['econtact_relat']; //Emergency Information Begin
+$efname=$_POST['efname'];
+$elname=$_POST['elname'];
+$ephn1=$_POST['element_12_1'] . '-' . $_POST['element_12_2'] . '-' . $_POST['element_12_3'];
+$ephn2=$_POST['element_13_1'] . '-' . $_POST['element_13_2'] . '-' . $_POST['element_13_3'];
+$eemail=$_POST['eemail']; //Emergency Information End
+$medical=$_POST['medical'];
+$uname=$_POST['uname'];
+$pw=$_POST['pw'];
 
-//DB insert st are here
 
-$stmt = $db->prepare('INSERT INTO Persons (firstname, lastname, age) VALUES (:first_name, :last_name, :age)');
+//Strip stripslashes
+$fname=stripslashes($fname);
+$mname=stripslashes($mname);
+$lname=stripslashes($lname);
+$nname=stripslashes($nname);
+$gender=stripslashes($gender);
+$dob=stripslashes($dob);
+$lang=stripslashes($lang);
+$slang=stripslashes($slang);
+$campus=stripslashes($campus);
+$cpath=stripslashes($cpath);
+$st_address=stripslashes($st_address);
+$city=stripslashes($city);
+$state=stripslashes($state);
+$zip=stripslashes($zip);
+$phone=stripslashes($phone); //phone number
+$email=stripslashes($email);
+$erelat=stripslashes($erelat); //Emergency Information Begin
+$efname=stripslashes($efname);
+$elname=stripslashes($elname);
+$ephn1=stripslashes($ephn1);
+$ephn2=stripslashes($ephn2);
+$eemail=stripslashes($eemail); //Emergency Information End
+$medical=stripslashes($medical);
+$uname=stripslashes($uname);
+//$pw=stripslashes['pw'];
+//$read = mysql_result(mysql_query("SELECT read FROM users WHERE id = $id"),0);
+//First DB Insert Statement Values
+$sid= mysql_result(mysql_query("SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'students'"),0);
+mysql_close($link);
 
-$stmt->execute(array(':first_name' => $first_name, ':last_name' => $last_name, ':age' => $age));
+echo "this is the next id -> $sid ";
+echo "this is the phone number - > $phone ";
+echo "This is the DOB ---> $dob";
+//First DB Insert Statement
 
-$db->disconnect();
+//$stmt = $db->prepare('INSERT INTO students () VALUES ()');
+
+//$stmt = $db->prepare('INSERT INTO Persons (firstname, lastname, age) VALUES (:first_name, :last_name, :age)');
+
+//$stmt->execute(array(':first_name' => $first_name, ':last_name' => $last_name, ':age' => $age));
+
+//$db->disconnect();
 //Send a confirmation email in complete loop
 // $to = "youremail@gmail.com";
 // $subject = "You Have Successfully Registered";
