@@ -54,15 +54,75 @@ $eemail=stripslashes($eemail); //Emergency Information End
 $medical=stripslashes($medical);
 $uname=stripslashes($uname);
 //$pw=stripslashes['pw'];
-//$read = mysql_result(mysql_query("SELECT read FROM users WHERE id = $id"),0);
-//First DB Insert Statement Values
-$sid= mysql_result(mysql_query("SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'students'"),0);
-mysql_close($link);
 
-echo "this is the next id -> $sid ";
-echo "this is the phone number - > $phone ";
-echo "This is the DOB ---> $dob";
+// FIRST INSERT STATEMENT VARIABLES, ALSO RESUSABLE FOR THE OTHER INSERT STATEMENTS
+// GENERATE NEW STUDENT ID
+$sql1 = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'students'";
+$sql1st = $db->prepare($sql1);
+$sql1st->execute();
+$obj1 = $sql1st->fetchObject();
+$newsid = $obj1->auto_increment;
+
+// FIRST DB INSERT STATEMENT
+// $stmt = $db->prepare('INSERT INTO students (student_id, last_name, first_name, middle_name, gender, common_name, birthdate, language, custom_11, email, 										phone, last_updated, custom_10) VALUES (:newsid, :lname, :fname, :mname, :gender, :nname, :dob, :lang, :slang, :email, :phone, :now, :cpath)');
+
+// $stmt->execute(array(':newsid' => $newsid, ':lname' => $lname, ':fname' => $fname, ':mname' => $mname, ':gender' => $gender, ':nname' => $nname, ':dob' => 					$dob, ':lang' => $lang, ':slang' => $slang, ':email' => $email, ':phone' => $phone, ':now' => $now, ':cpath' => $cpath));
+
+//COLLECT NEW VARIABLES FOR SECOND INSERT STATEMENTS, ALSO REUSABLE OF COURSE
+//NEW STUDENT ENROLLMENT ID
+$sql2 = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'student_enrollment' ";
+$sql2st = $db->prepare($sql2);
+$sql2st->execute();
+$obj2 = $sql2st->fetchObject();
+$stenid = $obj2->auto_increment;
+
+// FIND THE CORRECT SCHOOL YEAR
+$sql3 = "SELECT max(syear) FROM school_years";
+$sql3st = $db->prepare($sql3);
+$sql3st->execute();
+$obj3 = $sql3st->fetchObject();
+$syear = $obj3->auto_increment;
+
+// GET THE CURRENT YEAR
+$sql4 = "SELECT year(curdate())";
+$sql4st = $db->prepare($sql4);
+$sql4st->execute();
+$obj4 = $sql4st->fetchObject();
+$syear = $obj4->auto_increment;
+
+// GET THE CURRENT DATE
+$sql5 = "SELECT curdate()";
+$sql5st = $db->prepare($sql5);
+$sql5st->execute();
+$obj5 = $sql5st->fetchObject();
+$syear = $obj5->auto_increment;
+
+// GET THE CURRENT STUDENT ID WE CREATED IN THE FIRST STATEMENT
+
+//$stid = $db->prepare("SELECT student_id FROM students WHERE last_name=':lname' AND Birthdate=':dob'");
+//$stid-> execute(array(':lname' => $lname, ':dob' => $dob));  
+// $schcalstmt = $db->prepare("SELECT calendar_id FROM school_calendars WHERE school_id = ':campus' AND default_calendar ='Y'");
+// $schcalstmt -> execute(array(':campus' => $campus));
+// $schcal = $schcalstmt->fetch(PDO::FETCH_ASSOC);
+
+
+//mysql_close($db);
+
+
+echo "This is the Campus Value ======> $campus";
+//echo "What is this ohhhh ----> $schcal SCHOOL CALENDAR";
+
+echo "this is the next id -> $newsid ";
+// echo "This is now -> $now";
+// echo "this is the phone number - > $phone ";
+// echo "This is the DOB ---> $dob";
 //First DB Insert Statement
+
+
+
+
+$newsid = null
+//$db = null;
 
 //$stmt = $db->prepare('INSERT INTO students () VALUES ()');
 
