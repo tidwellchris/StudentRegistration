@@ -2,14 +2,60 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>GSOP Registration</title>
+	<title>GSOP Student Registration</title>
 	<meta name="HandheldFriendly" content="true">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 	<!--<link href="CSS/style.css" rel="stylesheet" type="text/css" media="screen" /> -->
 	<link href="CSS/view.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="objects/view.js"></script>
 	<script type="text/javascript" src="objects/calendar.js"></script>
+	
 </head>
+
+<script type="text/javascript" src="objects/jquery-2.2.2.js"></script>
+<!--EMAIL CHECK -->
+<script type="text/javascript">
+$(document).ready(function() {
+    var x_timer;    
+    $("#email").keyup(function (e){
+        clearTimeout(x_timer);
+        var email_result = $(this).val();
+        x_timer = setTimeout(function(){
+            check_email_ajax(email_result);
+        }, 1000);
+    }); 
+
+function check_email_ajax(email){
+    $("#email-result").html('<img src="images/ajax-loader.gif" />');
+    $.post('checkData.php', {'email':email}, function(data) {
+      $("#email-result").html(data);
+    });
+}
+});
+</script>
+
+<!--USERNAME CHECK -->
+<script type="text/javascript">
+$(document).ready(function() {
+    var x_timer;    
+    $("#uname").keyup(function (e){
+        clearTimeout(x_timer);
+        var user_name = $(this).val();
+        x_timer = setTimeout(function(){
+            check_username_ajax(user_name);
+        }, 1000);
+    }); 
+
+function check_username_ajax(uname){
+    $("#user-result").html('<img src="images/ajax-loader.gif" />');
+    $.post('checkData.php', {'uname':uname}, function(data) {
+      $("#user-result").html(data);
+    });
+}
+});
+</script>
+
+
 <body id="main_body" >
 
 	<img id="top" src="images/top.png" alt="">
@@ -215,7 +261,7 @@
 		</li>		<li id="li_8" >
 		<label class="description" for="email">Primary Email </label>
 		<div>
-			<input id="email" name="email" class="element text medium" type="text" maxlength="50" value=""/>
+			<input id="email" name="email" class="element text medium" type="text" maxlength="50" value=""/><span id="email-result"></span>
 		</div>
 		</li>		<li id="li_22" >
 		<label class="description" for="econtact_relat">Emergency Contact Relationship </label>
@@ -291,9 +337,9 @@
 	</li>		<li id="li_19" >
 	<label class="description" for="uname">Desired Username</label>
 	<div>
-		<input id="uname" name="uname" class="element text medium" type="text" maxlength="50" value=""/>
+		<input id="uname" name="uname" class="element text medium" type="text" maxlength="50" value="" /> <span id="user-result"></span>
 	</div><p class="guidelines" id="uname"><small>Desired Username</small></p>
-</li>		<li id="li_20" >
+  </li>		<li id="li_20" >
 <label class="description" for="pw">Password</label>
 <div>
 	<input id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/>
