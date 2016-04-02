@@ -1,7 +1,8 @@
 <?php
 require_once('../config/db.php');
 date_default_timezone_set("America/New_York");
-// Get values from form
+
+// GET VAULES FROM THE FORM POST
 $fname=$_POST['fname'];
 $mname=$_POST['mname'];
 $lname=$_POST['lname'];
@@ -29,7 +30,7 @@ $uname=$_POST['uname'];
 $pw=$_POST['pw'];
 
 
-//Strip stripslashes
+// STRIP SLASHES BECAUSE WE DO NOT TRUST ANYONE
 $fname=stripslashes($fname);
 $mname=stripslashes($mname);
 $lname=stripslashes($lname);
@@ -54,7 +55,7 @@ $ephn2=stripslashes($ephn2);
 $eemail=stripslashes($eemail); //Emergency Information End
 $medical=stripslashes($medical);
 $uname=stripslashes($uname);
-//$pw=stripslashes['pw'];
+$pwhsd=md5('$pw');
 /*******************************************************************************************
 *  FIRST INSERT STATEMENT AND VARIABLES BEGIN                                              *
 *******************************************************************************************/
@@ -69,9 +70,11 @@ $newsid = $obj1->auto_increment;
 $now = date("Y-m-d h:i:s");
 
 // FIRST DB INSERT STATEMENT
-// $sql = "INSERT INTO students (student_id, last_name, first_name, middle_name, gender, common_name, birthdate, language, custom_11, email, phone, last_updated, custom_10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-// $stmt = $db->prepare($sql);
-// $stmt->execute(array($newsid, $lname, $fname, $mname, $gender, $nname, $dob, $lang, $slang, $email, $phone, $now, $cpath));
+$sqll = "INSERT INTO students (student_id, last_name, first_name, middle_name, gender, common_name, birthdate, language, custom_11, email, phone, last_updated, custom_10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+$stmtl = $db->prepare($sqll);
+$stmtl->execute(array($newsid, $lname, $fname, $mname, $gender, $nname, $dob, $lang, $slang, $email, $phone, $now, $cpath));
+
+echo "1 statement completed";
 /*******************************************************************************************
 *  FIRST INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -107,20 +110,20 @@ $currdate = date("Y-m-d");
 $enrcd = 2;
 
 //GET THE CORRECT CALENDAR FROM THE STUDENTS SCHOOL
-// $sql7 = "SELECT calendar_id AS cal_id FROM school_calendars WHERE school_id = ? AND default_calendar = ?";
-// $sql7st = $db->prepare($sql7);
-// $sql7st->execute(array($campus, 'y'));
-// $calenid = $sql7st->fetchColumn();
-// echo "Calendar ID = = = > $calenid";
+$sql7 = "SELECT calendar_id AS cal_id FROM school_calendars WHERE school_id = ? AND default_calendar = ?";
+$sql7st = $db->prepare($sql7);
+$sql7st->execute(array($campus, 'y'));
+$calenid = $sql7st->fetchColumn();
+//echo "Calendar ID = = = > $calenid";
 
 // GET THE CURRENT DATE AND TIMESTAMPS
 // $now
 
-// // SECOND INSERT STATEMENT
-// $sql8 = "INSERT INTO student_enrollment (id, syear, school_id, student_id, grade_id, start_date , enrollment_code , next_school, calendar_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt8 = $db->prepare($sql8);
-// $stmt8->execute(array($stenid, $syear, $campus, $newsid, $curyear, $currdate, $enrcd, $campus, $calenid, $now));
-
+// SECOND INSERT STATEMENT
+$sql8 = "INSERT INTO student_enrollment (id, syear, school_id, student_id, grade_id, start_date , enrollment_code , next_school, calendar_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt8 = $db->prepare($sql8);
+$stmt8->execute(array($stenid, $syear, $campus, $newsid, $curyear, $currdate, $enrcd, $campus, $calenid, $now));
+echo "2 statement completed";
 /*******************************************************************************************
 *  SECOND INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -141,10 +144,10 @@ $plpid = $obj9->auto_increment;
 $proid = 4;
 
 // THIRD INSERT STATEMENT
-// $sql10 = "INSERT INTO people (staff_id, current_school_id, first_name, last_name, home_phone, cell_phone, email, profile, profile_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt10 = $db->prepare($sql10);
-// $stmt10->execute(array($plpid, $campus, $efname, $elname, $ephn1, $ephn2, $eemail, $proid, $now ));
-
+$sql10 = "INSERT INTO people (staff_id, current_school_id, first_name, last_name, home_phone, cell_phone, email, profile, profile_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt10 = $db->prepare($sql10);
+$stmt10->execute(array($plpid, $campus, $efname, $elname, $ephn1, $ephn2, $eemail, $proid, $now ));
+echo "3 statement completed";
 /*******************************************************************************************
 *  THIRD INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -165,11 +168,11 @@ $stadd1 = $obj11->auto_increment;
 $type1 = 'Home Address';
 
 // FOURTH INSERT STATEMENT
-// $sql12 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt12 = $db->prepare($sql12);
-// $stmt12->execute(array($stadd1, $newsid, $syear, $st_address, $city, $state, $zip, $type1, $now));
+$sql12 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt12 = $db->prepare($sql12);
+$stmt12->execute(array($stadd1, $newsid, $syear, $st_address, $city, $state, $zip, $type1, $now));
 
-
+echo "4 statement completed";
 /*******************************************************************************************
 *  FOURTH INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -192,11 +195,11 @@ $type2 = 'Mail';
 
 
 // FIFTH INSERT STATEMENT
-// $sql14 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt14 = $db->prepare($sql14);
-// $stmt14->execute(array($stadd2, $newsid, $syear, $st_address, $city, $state, $zip, $type2, $now));
+$sql14 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt14 = $db->prepare($sql14);
+$stmt14->execute(array($stadd2, $newsid, $syear, $st_address, $city, $state, $zip, $type2, $now));
 
-
+echo "5 statement completed";
 /*******************************************************************************************
 *  FIFTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -217,11 +220,11 @@ $stadd3 = $obj15->auto_increment;
 $type3 = 'Primary';
 
 // SIXTH INSERT STATEMENT
-// $sql16 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt16 = $db->prepare($sql16);
-// $stmt16->execute(array($stadd3, $newsid, $syear, $st_address, $city, $state, $zip, $type3, $plpid $now));
+$sql16 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt16 = $db->prepare($sql16);
+$stmt16->execute(array($stadd3, $newsid, $syear, $st_address, $city, $state, $zip, $type3, $plpid $now));
 
-
+echo "6 statement completed";
 /*******************************************************************************************
 *  SIXTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -243,11 +246,11 @@ $stadd4 = $obj17->auto_increment;
 $type4 = 'Secondary';
 
 // SEVENTH INSERT STATEMENT
-// $sql18 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-// $stmt18 = $db->prepare($sql18);
-// $stmt18->execute(array($stadd4, $newsid, $syear, $st_address, $city, $state, $zip, $type4, $plpid $now));
+$sql18 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$stmt18 = $db->prepare($sql18);
+$stmt18->execute(array($stadd4, $newsid, $syear, $st_address, $city, $state, $zip, $type4, $plpid $now));
 
-
+echo "7 statement completed";
 /*******************************************************************************************
 *  SEVENTH INSERT STATEMENT AND VARIABLES END                                              *
 *******************************************************************************************/
@@ -265,11 +268,11 @@ $obj19 = $sql19st->fetchObject();
 $stmedalrt = $obj19->auto_increment;
 
 // EIGHTH INSERT STATEMENT
-// $sql20 = "INSERT INTO student_medical_alerts (id, student_id, title, alert_date, last_updated) VALUES (?, ?, ?, ?, ?)";
-// $stmt20 = $db->prepare($sql20);
-// $stmt20->execute(array($stmedalrt, $newsid, $medical, $currdate, $now));
+$sql20 = "INSERT INTO student_medical_alerts (id, student_id, title, alert_date, last_updated) VALUES (?, ?, ?, ?, ?)";
+$stmt20 = $db->prepare($sql20);
+$stmt20->execute(array($stmedalrt, $newsid, $medical, $currdate, $now));
 
-
+echo "8 statement completed";
 /*******************************************************************************************
 *  EIGHTH INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -291,11 +294,11 @@ $login_pro = 3;
 
 
 // NINTH INSERT STATEMENT
-// $sql22 = "INSERT INTO login_authentication (id, user_id, profile_id, username, password, last_updated) VALUES (?, ?, ?, ?, ?, ?)";
-// $stmt22 = $db->prepare($sql22);
-// $stmt22->execute(array($login, $newsid, $login_pro, $uname, (md5($pw)), $now));
+$sql22 = "INSERT INTO login_authentication (id, user_id, profile_id, username, password, last_updated) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt22 = $db->prepare($sql22);
+$stmt22->execute(array($login, $newsid, $login_pro, $uname, $pwhsd, $now));
 
-
+echo "9 statement completed";
 /*******************************************************************************************
 *  NINTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -308,7 +311,7 @@ $login_pro = 3;
 echo "This is the Campus Value ======> $campus";
 //echo "What is this ohhhh ----> $schcal SCHOOL CALENDAR";
 
-echo "this is the next id -> $newsid ";
+//echo "this is the next id -> $newsid ";
 // echo "This is now -> $now";
 // echo "this is the phone number - > $phone ";
 // echo "This is the DOB ---> $dob";

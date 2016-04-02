@@ -12,6 +12,15 @@
 	
 </head>
 
+<noscript>
+    <style type="text/css">
+        .pagecontainer {display:none;}
+    </style>
+    <div class="noscriptmsg">
+    You don't have javascript enabled. Please enable it and return to this page.
+    </div>
+</noscript>
+
 <script type="text/javascript" src="objects/jquery-2.2.2.js"></script>
 <!--EMAIL CHECK -->
 <script type="text/javascript">
@@ -64,26 +73,26 @@ function check_username_ajax(uname){
 		<h1><a>GSOP Registration</a></h1>
 		<form id="form_1115316" class="appnitro"  method="post" action="insert.php">
 					<div class="form_description">
-			<h2>GSOP Registration</h2>
+			<h2>GSOP Student Registration</h2>
 			<p>New Student Registration Form</p>
 		</div>
 			<ul >
 
 					<li id="li_1" >
-		<label class="description" for="fname">First Name </label>
+		<label class="description" for="fname">*First Name </label>
 		<div>
-			<input id="fname" name="fname" class="element text medium" type="text" maxlength="50" value=""/>
-		</div><p class="guidelines" id="guide_1"><small>First Name</small></p>
+			<input id="fname" name="fname" class="element text medium" type="text" maxlength="50" value=""/ required>
+		</div><p class="guidelines" id="guide_1"><small>Enter Your First Name</small></p>
 		</li>		<li id="li_2" >
-		<label class="description" for="mname">Middle Name </label>
+		<label class="description" for="mname">Middle Name</label>
 		<div>
 			<input id="mname" name="mname" class="element text medium" type="text" maxlength="50" value=""/>
-		</div><p class="guidelines" id="mname"><small>Middle Name</small></p>
+		</div><p class="guidelines" id="mname"><small>Enter Your Middle Name</small></p>
 		</li>		<li id="li_3" >
-		<label class="description" for="lname">Last Name </label>
+		<label class="description" for="lname">*Last Name </label>
 		<div>
-			<input id="lname" name="lname" class="element text medium" type="text" maxlength="50" value=""/>
-		</div><p class="guidelines" id="guide_3"><small>Last Name</small></p>
+			<input id="lname" name="lname" class="element text medium" type="text" maxlength="50" value=""/ required>
+		</div><p class="guidelines" id="guide_3"><small>Enter Your Last Name</small></p>
 		<li id="li_19" >
 		<label class="description" for="nname">Nick Name </label>
 		<div>
@@ -92,9 +101,9 @@ function check_username_ajax(uname){
 
 
 		</li>		<li id="li_18" >
-		<label class="description" for="gender">Gender </label>
+		<label class="description" for="gender">*Gender</label>
 		<div>
-		<select class="element select medium" id="gender" name="gender">
+		<select class="element select medium" id="gender" name="gender" required>
 			<option value="" selected="selected"></option>
 <option value="1" >Male</option>
 <option value="2" >Female</option>
@@ -102,17 +111,17 @@ function check_username_ajax(uname){
 		</select>
 		</div>
 		</li>		<li id="li_9" >
-		<label class="description" for="element_9">Date of Birth </label>
+		<label class="description" for="element_9">*Date of Birth </label>
 		<span>
-			<input id="element_9_1" name="element_9_1" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_9_1" name="element_9_1" class="element text" size="2" maxlength="2" value="" type="text" required> -
 			<label for="element_9_1">MM</label>
 		</span>
 		<span>
-			<input id="element_9_2" name="element_9_2" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_9_2" name="element_9_2" class="element text" size="2" maxlength="2" value="" type="text" required> -
 			<label for="element_9_2">DD</label>
 		</span>
 		<span>
-	 		<input id="element_9_3" name="element_9_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_9_3" name="element_9_3" class="element text" size="4" maxlength="4" value="" type="text" required>
 			<label for="element_9_3">YYYY</label>
 		</span>
 
@@ -131,9 +140,9 @@ function check_username_ajax(uname){
 		</script>
 
 		</li>		<li id="li_14" >
-		<label class="description" for="lang">Primary Language </label>
+		<label class="description" for="lang">*Primary Language </label>
 		<div>
-			<input id="lang" name="lang" class="element text medium" type="text" maxlength="30" value=""/>
+			<input id="lang" name="lang" class="element text medium" type="text" maxlength="30" value=""/ required>
 		</div>
 		</li>		<li id="li_15" >
 		<label class="description" for="slang">Secondary Language </label>
@@ -141,7 +150,7 @@ function check_username_ajax(uname){
 			<input id="slang" name="slang" class="element text medium" type="text" maxlength="30" value=""/>
 		</div>
 		</li>		<li id="li_21" >
-		<label class="description" for="campus">Campus </label>
+		<label class="description" for="campus" required>*Campus </label>
 		<div>
 		<select class="element select medium" id="campus" name="campus">
 			<option value="" selected="selected"></option>
@@ -159,9 +168,9 @@ function check_username_ajax(uname){
 		</select>
 	</div><p class="guidelines" id="campus"><small>Indicate the campus you will go to the most</small></p>
 		</li>		<li id="li_20" >
-		<label class="description" for="cpath">Course Path </label>
+		<label class="description" for="cpath">*Course Path </label>
 		<div>
-		<select class="element select medium" id="cpath" name="cpath">
+		<select class="element select medium" id="cpath" name="cpath" required>
 			<option value="" selected="selected"></option>
 <option value="1" >Preaching Certificate</option>
 <option value="2" >Biblical Studies Certificate</option>
@@ -170,19 +179,19 @@ function check_username_ajax(uname){
 		</select>
 		</div>
 		</li>		<li id="li_4" >
-		<label class="description" for="st_address">Address </label>
+		<label class="description" for="st_address">*Address </label>
 		<div>
-			<input id="st_address" name="st_address" class="element text medium" type="text" maxlength="60" value=""/>
+			<input id="st_address" name="st_address" class="element text medium" type="text" maxlength="60" value=""/ required>
 		</div><p class="guidelines" id="st_address"><small>Street Address</small></p>
 		</li>		<li id="li_5" >
-		<label class="description" for="city">City </label>
+		<label class="description" for="city">*City </label>
 		<div>
-			<input id="city" name="city" class="element text medium" type="text" maxlength="50" value=""/>
+			<input id="city" name="city" class="element text medium" type="text" maxlength="50" value=""/ required>
 		</div><p class="guidelines" id="city"><small>City</small></p>
 		</li>		<li id="li_19" >
-		<label class="description" for="state">State </label>
+		<label class="description" for="state">*State </label>
 		<div>
-		<select class="element select medium" id="state" name="state">
+		<select class="element select medium" id="state" name="state" required>
 			<option value="" selected="selected"></option>
 				<option value="AK">AK</option>
 			  <option value="AL">AL</option>
@@ -239,34 +248,34 @@ function check_username_ajax(uname){
 		</select>
 		</div>
 		</li>		<li id="li_6" >
-		<label class="description" for="zip">Zip Code </label>
+		<label class="description" for="zip">*Zip Code </label>
 		<div>
-			<input id="zip" name="zip" class="element text medium" type="text" maxlength="255" value=""/>
+			<input id="zip" name="zip" class="element text medium" type="text" maxlength="255" value=""/ required>
 		</div>
 		</li>		<li id="li_7" >
-		<label class="description" for="element_7">Primary Phone Number </label>
+		<label class="description" for="element_7">*Primary Phone Number </label>
 		<span>
-			<input id="element_7_1" name="element_7_1" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_7_1" name="element_7_1" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_7_1">###</label>
 		</span>
 		<span>
-			<input id="element_7_2" name="element_7_2" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_7_2" name="element_7_2" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_7_2">###</label>
 		</span>
 		<span>
-	 		<input id="element_7_3" name="element_7_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_7_3" name="element_7_3" class="element text" size="4" maxlength="4" value="" type="text" required>
 			<label for="element_7_3">####</label>
 		</span>
 
 		</li>		<li id="li_8" >
-		<label class="description" for="email">Primary Email </label>
+		<label class="description" for="email">*Primary Email </label>
 		<div>
-			<input id="email" name="email" class="element text medium" type="text" maxlength="50" value=""/><span id="email-result"></span>
+			<input id="email" name="email" class="element text medium" type="text" maxlength="50" value=""/ required><span id="email-result"></span>
 		</div>
 		</li>		<li id="li_22" >
-		<label class="description" for="econtact_relat">Emergency Contact Relationship </label>
+		<label class="description" for="econtact_relat">*Emergency Contact Relationship </label>
 		<div>
-		<select class="element select medium" id="econtact_relat" name="econtact_relat">
+		<select class="element select medium" id="econtact_relat" name="econtact_relat" required>
 			<option value="" selected="selected"></option>
 <option value="1" >Father</option>
 <option value="2" >Mother</option>
@@ -284,42 +293,42 @@ function check_username_ajax(uname){
 		</select>
 		</div>
 		</li>		<li id="li_10" >
-		<label class="description" for="efname">Emergency Contact First Name </label>
+		<label class="description" for="efname">*Emergency Contact First Name </label>
 		<div>
-			<input id="efname" name="efname" class="element text medium" type="text" maxlength="30" value=""/>
+			<input id="efname" name="efname" class="element text medium" type="text" maxlength="30" value=""/ required>
 		</div>
 		</li>		<li id="li_11" >
-		<label class="description" for="elname">Emergency Contact Last Name </label>
+		<label class="description" for="elname">*Emergency Contact Last Name </label>
 		<div>
-			<input id="elname" name="elname" class="element text medium" type="text" maxlength="30" value=""/>
+			<input id="elname" name="elname" class="element text medium" type="text" maxlength="30" value=""/ required>
 		</div>
 		</li>		<li id="li_12" >
-		<label class="description" for="element_12">Emergency Contact Phone Number </label>
+		<label class="description" for="element_12">*Emergency Contact Phone Number </label>
 		<span>
-			<input id="element_12_1" name="element_12_1" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_12_1" name="element_12_1" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_12_1">###</label>
 		</span>
 		<span>
-			<input id="element_12_2" name="element_12_2" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_12_2" name="element_12_2" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_12_2">###</label>
 		</span>
 		<span>
-	 		<input id="element_12_3" name="element_12_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_12_3" name="element_12_3" class="element text" size="4" maxlength="4" value="" type="text" required>
 			<label for="element_12_3">####</label>
 		</span>
 
 		</li>		<li id="li_13" >
-		<label class="description" for="element_13">Emergency Contact Phone Number 2 </label>
+		<label class="description" for="element_13">*Emergency Contact Phone Number 2 </label>
 		<span>
-			<input id="element_13_1" name="element_13_1" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_13_1" name="element_13_1" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_13_1">###</label>
 		</span>
 		<span>
-			<input id="element_13_2" name="element_13_2" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_13_2" name="element_13_2" class="element text" size="3" maxlength="3" value="" type="text" required> -
 			<label for="element_13_2">###</label>
 		</span>
 		<span>
-	 		<input id="element_13_3" name="element_13_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_13_3" name="element_13_3" class="element text" size="4" maxlength="4" value="" type="text" required>
 			<label for="element_13_3">####</label>
 		</span>
 
@@ -335,14 +344,14 @@ function check_username_ajax(uname){
 		</div>
 		</li>
 	</li>		<li id="li_19" >
-	<label class="description" for="uname">Desired Username</label>
+	<label class="description" for="uname">*Desired Username</label>
 	<div>
-		<input id="uname" name="uname" class="element text medium" type="text" maxlength="50" value="" /> <span id="user-result"></span>
+		<input id="uname" name="uname" class="element text medium" type="text" maxlength="50" value="" / required> <span id="user-result"></span>
 	</div><p class="guidelines" id="uname"><small>Desired Username</small></p>
   </li>		<li id="li_20" >
-<label class="description" for="pw">Password</label>
+<label class="description" for="pw">*Password</label>
 <div>
-	<input id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/>
+	<input id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/ required>
 </div><p class="guidelines" id="pw"><small>Password</small></p>
 
 					<li class="buttons">
