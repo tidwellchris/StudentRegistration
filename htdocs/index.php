@@ -13,12 +13,7 @@
 </head>
 
 <noscript>
-    <style type="text/css">
-        .pagecontainer {display:none;}
-    </style>
-    <div class="noscriptmsg">
-    You don't have javascript enabled. Please enable it and return to this page.
-    </div>
+<bold> JavaScript is turned off in your web browser. Turn it on to take full advantage of this site, then refresh the page. </bold>
 </noscript>
 
 <script type="text/javascript" src="objects/jquery-2.2.2.js"></script>
