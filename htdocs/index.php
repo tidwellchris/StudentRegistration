@@ -100,8 +100,8 @@ function check_username_ajax(uname){
 		<div>
 		<select class="element select medium" id="gender" name="gender" required>
 			<option value="" selected="selected"></option>
-<option value="1" >Male</option>
-<option value="2" >Female</option>
+<option value="Male" >Male</option>
+<option value="Female" >Female</option>
 
 		</select>
 		</div>
@@ -167,9 +167,9 @@ function check_username_ajax(uname){
 		<div>
 		<select class="element select medium" id="cpath" name="cpath" required>
 			<option value="" selected="selected"></option>
-<option value="1" >Preaching Certificate</option>
-<option value="2" >Biblical Studies Certificate</option>
-<option value="3" >Audit</option>
+<option value="Preaching Certificate" >Preaching Certificate</option>
+<option value="Biblical Studies Certificate" >Biblical Studies Certificate</option>
+<option value="Audit" >Audit</option>
 
 		</select>
 		</div>
@@ -272,18 +272,18 @@ function check_username_ajax(uname){
 		<div>
 		<select class="element select medium" id="econtact_relat" name="econtact_relat" required>
 			<option value="" selected="selected"></option>
-<option value="1" >Father</option>
-<option value="2" >Mother</option>
-<option value="3" >Step Father</option>
-<option value="4" >Step Mother</option>
-<option value="5" >Grandfather</option>
-<option value="6" >Grandmother</option>
-<option value="7" >Legal Guardian</option>
-<option value="8" >Other Family Member</option>
-<option value="9" >Friend</option>
-<option value="10" >Husband</option>
-<option value="11" >Wife</option>
-<option value="12" >Other</option>
+<option value="Father" >Father</option>
+<option value="Mother" >Mother</option>
+<option value="Step Father" >Step Father</option>
+<option value="Step Mother" >Step Mother</option>
+<option value="Grandfather" >Grandfather</option>
+<option value="Grandmother" >Grandmother</option>
+<option value="Legal Guardian" >Legal Guardian</option>
+<option value="Other Family Member" >Other Family Member</option>
+<option value="Friend" >Friend</option>
+<option value="Husband" >Husband</option>
+<option value="Wife" >Wife</option>
+<option value="Other" >Other</option>
 
 		</select>
 		</div>

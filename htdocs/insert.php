@@ -56,6 +56,57 @@ $eemail=stripslashes($eemail); //Emergency Information End
 $medical=stripslashes($medical);
 $uname=stripslashes($uname);
 $pwhsd=md5('$pw');
+
+$emailstatement = "SELECT count(*) AS email_cnt FROM students WHERE email= ?";
+$emailck = $db->prepare($emailstatement);
+$emailck->execute(array($email));
+$row1 = $emailck->fetchObject();
+$email_cnt = $row1->email_cnt;
+
+
+$userstatement = "SELECT count(*) AS cnt FROM login_authentication WHERE username= ?";
+$userstatement = $db->prepare($userstatement);
+$userstatement->execute(array($uname));
+$usrrow = $userstatement->fetchObject();
+$user_count = $usrrow->cnt;
+
+
+
+if ($email_cnt > 0 ){
+	//echo "This email has already been used."; ?>
+		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
+		<p> The Email address you are trying to use is already in use<br>
+		<p> If you have already registered, this would be why if not someone has used your email address. </p>
+		<p>	Please Change it and submit again. </p>
+		<p><button onclick="goBack()">Go Back</button>
+		<script>
+		function goBack() {
+		    window.history.back();
+		}
+		</script></p></center>
+<?PHP
+}
+
+elseif ($user_count > 0) {
+	//echo "Please choose a different username. It has already been taken."; ?>
+		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
+		<p> The Username you are trying to use is already in use<br>
+		<p> Someone else had the same idea... </p>
+		<p>	Please change it and submit again. </p>
+		<p><button onclick="goBack()">Go Back</button>
+		<script>
+		function goBack() {
+		    window.history.back();
+		}
+		</script></p></center>
+<?PHP
+}
+
+else {
+
+
+
+
 /*******************************************************************************************
 *  FIRST INSERT STATEMENT AND VARIABLES BEGIN                                              *
 *******************************************************************************************/
@@ -70,11 +121,11 @@ $newsid = $obj1->auto_increment;
 $now = date("Y-m-d h:i:s");
 
 // FIRST DB INSERT STATEMENT
-$sqll = "INSERT INTO students (student_id, last_name, first_name, middle_name, gender, common_name, birthdate, language, custom_11, email, phone, last_updated, custom_10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+$sqll = "INSERT INTO students (student_id, last_name, first_name, middle_name, gender, common_name, birthdate, language, custom_11, email, phone, last_updated, custom_10) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmtl = $db->prepare($sqll);
 $stmtl->execute(array($newsid, $lname, $fname, $mname, $gender, $nname, $dob, $lang, $slang, $email, $phone, $now, $cpath));
 
-echo "1 statement completed";
+//echo "1 statement completed";
 /*******************************************************************************************
 *  FIRST INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -123,7 +174,7 @@ $calenid = $sql7st->fetchColumn();
 $sql8 = "INSERT INTO student_enrollment (id, syear, school_id, student_id, grade_id, start_date , enrollment_code , next_school, calendar_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt8 = $db->prepare($sql8);
 $stmt8->execute(array($stenid, $syear, $campus, $newsid, $curyear, $currdate, $enrcd, $campus, $calenid, $now));
-echo "2 statement completed";
+//echo "2 statement completed";
 /*******************************************************************************************
 *  SECOND INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -133,12 +184,15 @@ echo "2 statement completed";
 *******************************************************************************************/
 // DEFINE ANY VARIABLE NEEDED
 
-// NEXT ID KEY FOR PEOPLE 
-$sql9 = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'people' ";
-$sql9st = $db->prepare($sql9);
-$sql9st->execute();
-$obj9 = $sql9st->fetchObject();
-$plpid = $obj9->auto_increment;
+// NEXT ID KEY FOR PEOPLE (NOT NEEDED SINCE IT IS ACTUALLY THE STUDENT OR STAFF ID)
+// $sql9 = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'people' ";
+// $sql9st = $db->prepare($sql9);
+// $sql9st->execute();
+// $obj9 = $sql9st->fetchObject();
+// $plpid = $obj9->auto_increment;
+
+// PROFILE
+$pro = 'parent';
 
 // PROFILE ID
 $proid = 4;
@@ -146,8 +200,8 @@ $proid = 4;
 // THIRD INSERT STATEMENT
 $sql10 = "INSERT INTO people (staff_id, current_school_id, first_name, last_name, home_phone, cell_phone, email, profile, profile_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt10 = $db->prepare($sql10);
-$stmt10->execute(array($plpid, $campus, $efname, $elname, $ephn1, $ephn2, $eemail, $proid, $now ));
-echo "3 statement completed";
+$stmt10->execute(array($newsid, $campus, $efname, $elname, $ephn1, $ephn2, $eemail, $pro, $proid, $now ));
+//echo "3 statement completed";
 /*******************************************************************************************
 *  THIRD INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -170,9 +224,9 @@ $type1 = 'Home Address';
 // FOURTH INSERT STATEMENT
 $sql12 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt12 = $db->prepare($sql12);
-$stmt12->execute(array($stadd1, $newsid, $syear, $st_address, $city, $state, $zip, $type1, $now));
+$stmt12->execute(array($stadd1, $newsid, $syear, $campus, $st_address, $city, $state, $zip, $type1, $now));
 
-echo "4 statement completed";
+//echo "4 statement completed";
 /*******************************************************************************************
 *  FOURTH INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -197,9 +251,9 @@ $type2 = 'Mail';
 // FIFTH INSERT STATEMENT
 $sql14 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt14 = $db->prepare($sql14);
-$stmt14->execute(array($stadd2, $newsid, $syear, $st_address, $city, $state, $zip, $type2, $now));
+$stmt14->execute(array($stadd2, $newsid, $syear, $campus, $st_address, $city, $state, $zip, $type2, $now));
 
-echo "5 statement completed";
+//echo "5 statement completed";
 /*******************************************************************************************
 *  FIFTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -220,11 +274,11 @@ $stadd3 = $obj15->auto_increment;
 $type3 = 'Primary';
 
 // SIXTH INSERT STATEMENT
-$sql16 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql16 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt16 = $db->prepare($sql16);
-$stmt16->execute(array($stadd3, $newsid, $syear, $st_address, $city, $state, $zip, $type3, $plpid $now));
+$stmt16->execute(array($stadd3, $newsid, $syear, $campus, $st_address, $city, $state, $zip, $type3, $newsid, $now));
 
-echo "6 statement completed";
+//echo "6 statement completed";
 /*******************************************************************************************
 *  SIXTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
@@ -246,11 +300,11 @@ $stadd4 = $obj17->auto_increment;
 $type4 = 'Secondary';
 
 // SEVENTH INSERT STATEMENT
-$sql18 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql18 = "INSERT INTO student_address (id, student_id, syear, school_id, street_address_1, city, state, zipcode, type, people_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt18 = $db->prepare($sql18);
-$stmt18->execute(array($stadd4, $newsid, $syear, $st_address, $city, $state, $zip, $type4, $plpid $now));
+$stmt18->execute(array($stadd4, $newsid, $syear, $campus, $st_address, $city, $state, $zip, $type4, $newsid, $now));
 
-echo "7 statement completed";
+///echo "7 statement completed";
 /*******************************************************************************************
 *  SEVENTH INSERT STATEMENT AND VARIABLES END                                              *
 *******************************************************************************************/
@@ -258,6 +312,11 @@ echo "7 statement completed";
 /*******************************************************************************************
 *  EIGHTH INSERT STATEMENT AND VARIABLES BEGIN                                             * 
 *******************************************************************************************/
+if($medical == ''){
+
+	//do Nothing
+} else {
+
 // DEFINE ANY VARIABLE NEEDED
 
 // NEXT ID KEY FOR STUDENT ADDRESS 
@@ -272,7 +331,10 @@ $sql20 = "INSERT INTO student_medical_alerts (id, student_id, title, alert_date,
 $stmt20 = $db->prepare($sql20);
 $stmt20->execute(array($stmedalrt, $newsid, $medical, $currdate, $now));
 
-echo "8 statement completed";
+//echo "8 statement completed";
+
+}
+
 /*******************************************************************************************
 *  EIGHTH INSERT STATEMENT AND VARIABLES END                                               *
 *******************************************************************************************/
@@ -298,50 +360,39 @@ $sql22 = "INSERT INTO login_authentication (id, user_id, profile_id, username, p
 $stmt22 = $db->prepare($sql22);
 $stmt22->execute(array($login, $newsid, $login_pro, $uname, $pwhsd, $now));
 
-echo "9 statement completed";
+//echo "9 statement completed";
 /*******************************************************************************************
 *  NINTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
 
 
-
-//mysql_close($db);
-
-
-echo "This is the Campus Value ======> $campus";
-//echo "What is this ohhhh ----> $schcal SCHOOL CALENDAR";
-
-//echo "this is the next id -> $newsid ";
-// echo "This is now -> $now";
-// echo "this is the phone number - > $phone ";
-// echo "This is the DOB ---> $dob";
-//First DB Insert Statement
-
-
-
-
 $db = null;
-$db->disconnect();
+//$db->disconnect();
 
 
 //Send a confirmation email in complete loop
-// $to = "youremail@gmail.com";
-// $subject = "You Have Successfully Registered";
-// $message = " Hi " . $fname . "\r\n City: " . $city . "\r\n Phone: " . $phone . "\r\n Email: " . $email;
-//
-//
-// $from = "info@gsoponline.org";
-// $headers = "From:" . $from . "\r\n";
-// $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
-//
-// if(@mail($to,$subject,$message,$headers))
-// {
-//   print "<script>document.location.href='http://demo.ftutorials.com/html5-contact-form/success.html';</script>";
-//   // Created by Future Tutorials
-// }else{
-//   echo "Error! Please try again.";
-// }
-//
-//
+$to = "tidwellchris@gmail.com";
+$subject = "You Have Successfully Registered";
+$message = " Hi " . $fname . ",\r\n \r\n Thanks for registering at GSOP Online. You can now login with the credentials you provided \r\n \r\n Thanks, \r\n GSOP Staff \r\n \r\n **This is not a monitored email address, Please do not respond.**";
 
+
+$from = "info@gsoponline.org";
+$headers = "From: GSOP Online \r\n";
+$headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
+
+if(@mail($to,$subject,$message,$headers))
+{
+  print "<script>document.location.href='http://student.gsoponline.org/';</script>";
+  // Created by Future Tutorials
+}else{
+  echo "Error! Please try again.";
+  ?>
+		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
+		<p> Sorry... Something went wrong</p>
+		<p>	Please try again! </p>
+		</center>
+<?PHP
+}
+
+}
 ?>

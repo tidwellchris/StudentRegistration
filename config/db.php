@@ -5,6 +5,7 @@ $hostname = 'mysql.server266.com';
 $username = 'dgsopb';
 $password = 'Preaching3ch00l';
 $database = 'gsoponline_test_sis';
+//$database = 'gsoponline_sis';
 
 //DO NOT EDIT BELOW THIS LINE
 try {
