@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>GSOP Student Registration</title>
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 	<!--<link href="CSS/style.css" rel="stylesheet" type="text/css" media="screen" /> -->
@@ -12,12 +13,16 @@
 	
 </head>
 
+<!-- FAVICON -->
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+
+<!-- CHECK TO SEE IF JS IS ACTIVE ON THE BROWSER -->
 <noscript>
 <bold> JavaScript is turned off in your web browser. Turn it on to take full advantage of this site, then refresh the page. </bold>
 </noscript>
 
 <script type="text/javascript" src="objects/jquery-2.2.2.js"></script>
-<!--EMAIL CHECK -->
+<!-- JS EMAIL CHECK -->
 <script type="text/javascript">
 $(document).ready(function() {
     var x_timer;    
@@ -38,7 +43,7 @@ function check_email_ajax(email){
 });
 </script>
 
-<!--USERNAME CHECK -->
+<!--JS USERNAME CHECK -->
 <script type="text/javascript">
 $(document).ready(function() {
     var x_timer;    
@@ -68,7 +73,8 @@ function check_username_ajax(uname){
 		<h1><a>GSOP Registration</a></h1>
 		<form id="form_1115316" class="appnitro"  method="post" action="insert.php">
 					<div class="form_description">
-			<h2>GSOP Student Registration</h2>
+			 <!--<h2>GSOP Student Registration</h2> -->		
+			 <tr><right><img id="logo" src="images/gsop.png" ></right></tr>
 			<p>New Student Registration Form</p>
 		</div>
 			<ul >
@@ -346,7 +352,7 @@ function check_username_ajax(uname){
   </li>		<li id="li_20" >
 <label class="description" for="pw">*Password</label>
 <div>
-	<input id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/ required>
+	<input type ="password" id="pw" name="pw" class="element text medium" type="text" maxlength="50" value=""/ required>
 </div><p class="guidelines" id="pw"><small>Password</small></p>
 
 					<li class="buttons">

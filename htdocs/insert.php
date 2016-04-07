@@ -1,3 +1,10 @@
+
+<html lang="en">
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+</head>
+</html>
 <?php
 require_once('../config/db.php');
 date_default_timezone_set("America/New_York");
@@ -367,20 +374,43 @@ $stmt22->execute(array($login, $newsid, $login_pro, $uname, $pwhsd, $now));
 
 
 $db = null;
+$sql1st = null;
+$stmtl = null;
+$sql2st = null;
+$stmt2 = null;
+$sql3st = null;
+$sql7st = null;
+$stmt8 = null;
+$stmt22 = null;
+$sql21st = null;
+$stmt18 = null;
+$stmt16 = null;
+$sql19st = null;
+$stmt14 = null;
+$sql13st = null;
+$stmt12 = null;
+$stmt20 = null;
+$sql17st = null;
+$sql15st = null;
+$sql11st = null;
+$stmt12 = null;
+$stmt10 = null;
+$emailck = null;
+$userstatement = null;
 //$db->disconnect();
 
 
 //Send a confirmation email in complete loop
-$to = "tidwellchris@gmail.com";
+$to = $email;
 $subject = "You Have Successfully Registered";
 $message = " Hi " . $fname . ",\r\n \r\n Thanks for registering at GSOP Online. You can now login with the credentials you provided \r\n \r\n Thanks, \r\n GSOP Staff \r\n \r\n **This is not a monitored email address, Please do not respond.**";
 
 
-$from = "info@gsoponline.org";
-$headers = "From: GSOP Online \r\n";
+$from = "donotreply@gsoponline.org";
+$headers = "From: GSOP Online <donotreply@gsoponline.org> \r\n";
 $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
 
-if(@mail($to,$subject,$message,$headers))
+if(@mail($to,$subject,$message,$headers,'-fdonotreply@gsoponline.org'))
 {
   print "<script>document.location.href='http://student.gsoponline.org/';</script>";
   // Created by Future Tutorials

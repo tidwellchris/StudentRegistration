@@ -1,9 +1,15 @@
+<html lang="en">
+<head>
+<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+</head>
+</html>
+
 <?php
 
 //ENTER YOUR DATABASE CONNECTION INFO BELOW:
 $hostname = 'mysql.server266.com';
-$username = 'dgsopb';
-$password = 'Preaching3ch00l';
+$username = 'formadmin';
+$password = 'weM@kepreacher$';
 $database = 'gsoponline_test_sis';
 //$database = 'gsoponline_sis';
 

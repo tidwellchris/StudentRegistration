@@ -82,7 +82,10 @@ img
 	behavior:url(css/iepngfix.htc);
 	border:none;
 }
-
+.logo
+{
+	float:right;
+}
 
 /**** Form Section ****/
 .appnitro
