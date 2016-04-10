@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -77,35 +76,55 @@ $userstatement->execute(array($uname));
 $usrrow = $userstatement->fetchObject();
 $user_count = $usrrow->cnt;
 
+$captcha=$_POST['g-recaptcha-response'];
+$secretKey = "6LdB-BwTAAAAABntZZaTWSeBkUCACeodjfTjRkBx";
+$ip = $_SERVER['REMOTE_ADDR'];
+echo "This is I $ip";
+$response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+$responseKeys = json_decode($response,true);
 
+if($responseKeys["success"] != true) {
+  ?>
+  <center><p><img id="uhoh" src="images/uhoh.png" ></p>
+    <p> You did not fill out the Robot test correclty<br>
+    <p>  Please Try Again. </p>
+    <p><button onclick="goBack()">Go Back</button>
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script></p></center>
+<?PHP
 
-if ($email_cnt > 0 ){
-	//echo "This email has already been used."; ?>
-		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
-		<p> The Email address you are trying to use is already in use<br>
-		<p> If you have already registered, this would be why if not someone has used your email address. </p>
-		<p>	Please Change it and submit again. </p>
-		<p><button onclick="goBack()">Go Back</button>
-		<script>
-		function goBack() {
-		    window.history.back();
-		}
-		</script></p></center>
+}
+
+elseif ($email_cnt > 0 ){
+  //echo "This email has already been used."; ?>
+    <center><p><img id="uhoh" src="images/uhoh.png" ></p>
+    <p> The Email address you are trying to use is already in use<br>
+    <p> If you have already registered, this would be why if not someone has used your email address. </p>
+    <p>  Please Change it and submit again. </p>
+    <p><button onclick="goBack()">Go Back</button>
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script></p></center>
 <?PHP
 }
 
 elseif ($user_count > 0) {
-	//echo "Please choose a different username. It has already been taken."; ?>
-		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
-		<p> The Username you are trying to use is already in use<br>
-		<p> Someone else had the same idea... </p>
-		<p>	Please change it and submit again. </p>
-		<p><button onclick="goBack()">Go Back</button>
-		<script>
-		function goBack() {
-		    window.history.back();
-		}
-		</script></p></center>
+  //echo "Please choose a different username. It has already been taken."; ?>
+    <center><p><img id="uhoh" src="images/uhoh.png" ></p>
+    <p> The Username you are trying to use is already in use<br>
+    <p> Someone else had the same idea... </p>
+    <p>  Please change it and submit again. </p>
+    <p><button onclick="goBack()">Go Back</button>
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script></p></center>
 <?PHP
 }
 
@@ -150,7 +169,7 @@ $stenid = $obj2->auto_increment;
 
 // FIND THE CORRECT SCHOOL YEAR
 $sql3 = "SELECT max(syear) AS syear FROM school_years";
-$sql3st = $db->prepare($sql3);	
+$sql3st = $db->prepare($sql3);  
 $sql3st->execute();
 $obj3 = $sql3st->fetchObject();
 $syear = $obj3->syear;
@@ -321,7 +340,7 @@ $stmt18->execute(array($stadd4, $newsid, $syear, $campus, $st_address, $city, $s
 *******************************************************************************************/
 if($medical == ''){
 
-	//do Nothing
+  //do Nothing
 } else {
 
 // DEFINE ANY VARIABLE NEEDED
@@ -417,12 +436,14 @@ if(@mail($to,$subject,$message,$headers,'-fdonotreply@gsoponline.org'))
 }else{
   echo "Error! Please try again.";
   ?>
-		<center><p><img id="uhoh" src="images/uhoh.png" ></p>
-		<p> Sorry... Something went wrong</p>
-		<p>	Please try again! </p>
-		</center>
+    <center><p><img id="uhoh" src="images/uhoh.png" ></p>
+    <p> Sorry... Something went wrong</p>
+    <p>  Please try again! </p>
+    </center>
 <?PHP
 }
 
 }
 ?>
+
+​
