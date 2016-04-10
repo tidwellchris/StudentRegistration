@@ -8,8 +8,8 @@
 
 //ENTER YOUR DATABASE CONNECTION INFO BELOW:
 $hostname = 'mysql.server266.com';
-$username = 'formadmin';
-$password = 'weM@kepreacher$';
+$username = 'noneofyourbusiness';
+$password = 'noneofyourbusiness';
 $database = 'gsoponline_test_sis';
 //$database = 'gsoponline_sis';
 
