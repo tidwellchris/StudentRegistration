@@ -7,10 +7,10 @@
 <?php
 
 //ENTER YOUR DATABASE CONNECTION INFO BELOW:
-$hostname = 'mysql.server266.com';
+$hostname = 'mysql.DBSERVER.com';
 $username = 'noneofyourbusiness';
 $password = 'noneofyourbusiness';
-$database = 'gsoponline_test_sis';
+$database = 'DBGoesHere';
 //$database = 'gsoponline_sis';
 
 //DO NOT EDIT BELOW THIS LINE
