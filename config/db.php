@@ -7,10 +7,10 @@
 <?php
 
 //ENTER YOUR DATABASE CONNECTION INFO BELOW:
-$hostname = 'mysql.DBSERVER.com';
-$username = 'noneofyourbusiness';
-$password = 'noneofyourbusiness';
-$database = 'DBGoesHere';
+$hostname = 'mysql.server266.com';
+$username = 'formadmin';
+$password = 'weM@kepreacher$';
+$database = 'gsoponline_sis';
 //$database = 'gsoponline_sis';
 
 //DO NOT EDIT BELOW THIS LINE
@@ -25,4 +25,32 @@ catch(PDOException $e)
     //echo "Connection failed: " . $e->getMessage();
     }
 
+
+
+
+
+
+
+
+/*
+$db = mysql_connect($hostname, $username, $password);
+$db = new PDO($hostname, $username, $password);
+if (!$db) {
+die('Connection failed: ' . mysql_error());
+}
+else{
+     echo "Connection to MySQL server " .$hostname . " successful!
+" . PHP_EOL;
+}
+
+$db_selected = mysql_select_db($database, $db);
+if (!$db_selected) {
+    die ('Can\'t select database: ' . mysql_error());
+}
+else {
+    echo 'Database ' . $database . ' successfully selected!';
+}
+
+//mysql_close($db);
+*/
 ?>

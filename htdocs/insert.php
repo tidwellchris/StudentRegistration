@@ -191,6 +191,10 @@ $sql7 = "SELECT calendar_id AS cal_id FROM school_calendars WHERE school_id = ? 
 $sql7st = $db->prepare($sql7);
 $sql7st->execute(array($campus, 'y'));
 $calenid = $sql7st->fetchColumn();
+$sql30 = "select id from school_gradelevels where short_name = (select year(curdate()) as curyear) and school_id = ?";
+$sql30st = $db->prepare($sql30);
+$sql30st->execute(array($campus));
+$currgrade = $sql30st->fetchColumn();  
 //echo "Calendar ID = = = > $calenid";
 
 // GET THE CURRENT DATE AND TIMESTAMPS
@@ -199,7 +203,7 @@ $calenid = $sql7st->fetchColumn();
 // SECOND INSERT STATEMENT
 $sql8 = "INSERT INTO student_enrollment (id, syear, school_id, student_id, grade_id, start_date , enrollment_code , next_school, calendar_id, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt8 = $db->prepare($sql8);
-$stmt8->execute(array($stenid, $syear, $campus, $newsid, $curyear, $currdate, $enrcd, $campus, $calenid, $now));
+$stmt8->execute(array($stenid, $syear, $campus, $newsid, $currgrade, $currdate, $enrcd, $campus, $calenid, $now));
 //echo "2 statement completed";
 /*******************************************************************************************
 *  SECOND INSERT STATEMENT AND VARIABLES END                                               *
@@ -384,11 +388,35 @@ $login_pro = 3;
 // NINTH INSERT STATEMENT
 $sql22 = "INSERT INTO login_authentication (id, user_id, profile_id, username, password, last_updated) VALUES (?, ?, ?, ?, ?, ?)";
 $stmt22 = $db->prepare($sql22);
-$stmt22->execute(array($login, $newsid, $login_pro, $uname, $pwhsd, $now));
+$stmt22->execute(array($login, $newsid, $login_pro, $uname, (md5($pw)), $now));
 
 //echo "9 statement completed";
 /*******************************************************************************************
 *  NINTH INSERT STATEMENT AND VARIABLES END                                                *
+*******************************************************************************************/
+  
+/*******************************************************************************************
+*  TENTH INSERT STATEMENT AND VARIABLES BEGIN                                              * 
+*******************************************************************************************/
+// DEFINE ANY VARIABLE NEEDED
+
+// NEXT ID KEY FOR STUDENT JOIN PEOPLE
+$sql23 = "SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE table_name = 'students_join_people' ";
+$sql23st = $db->prepare($sql23);
+$sql23st->execute();
+$obj23 = $sql23st->fetchObject();
+$sjp = $obj23->auto_increment;
+
+$prim = 'Primary';
+
+// NINTH INSERT STATEMENT
+$sql24 = "INSERT INTO students_join_people (id, student_id, person_id, emergency_type, relationship, last_updated) VALUES (?, ?, ?, ?, ?, ?)";
+$stmt24 = $db->prepare($sql24);
+$stmt24->execute(array($sjp, $newsid, $newsid, $prim, $erelat, $now));
+
+//echo "9 statement completed";
+/*******************************************************************************************
+*  TENTH INSERT STATEMENT AND VARIABLES END                                                *
 *******************************************************************************************/
 
 
@@ -414,6 +442,7 @@ $sql15st = null;
 $sql11st = null;
 $stmt12 = null;
 $stmt10 = null;
+$sql30st = null;
 $emailck = null;
 $userstatement = null;
 //$db->disconnect();
@@ -431,7 +460,7 @@ $headers .= "Content-type: text/plain; charset=UTF-8" . "\r\n";
 
 if(@mail($to,$subject,$message,$headers,'-fdonotreply@gsoponline.org'))
 {
-  print "<script>document.location.href='http://student.gsoponline.org/';</script>";
+  print "<script>document.location.href='http://gsoponline.org/class-enrollment/';</script>";
   // Created by Future Tutorials
 }else{
   echo "Error! Please try again.";
@@ -446,4 +475,3 @@ if(@mail($to,$subject,$message,$headers,'-fdonotreply@gsoponline.org'))
 }
 ?>
 
-​

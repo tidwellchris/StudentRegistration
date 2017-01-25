@@ -1,3 +1,7 @@
+<?PHP
+//require_once('recaptchaLib.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,19 +160,10 @@ function check_username_ajax(uname){
     <div>
     <select class="element select medium" id="campus" name="campus">
       <option value="" selected="selected"></option>
-<option value="10" >Avondale Campus</option>
-<option value="3" >Buford Campus</option>
-<option value="6" >Dasher Campus</option>
-<option value="9" >Elijay Campus</option>
-<option value="13" >Fayetteville Campus</option>
-<option value="2" >Marietta Campus</option>
-<option value="11" >Moultrie Campus</option>
-<option value="12" >Munford/Alabama Campus</option>
-<option value="5" >Villa Rica Campus</option>
-<option value="7" >Warner Robins Campus</option>
+<option value="1" >Georgia School of Preaching</option>
 
     </select>
-  </div><p class="guidelines" id="campus"><small>Indicate the campus you will go to the most</small></p>
+  </div><p class="guidelines" id="campus"><small>Indicate Georgia School of Preaching for now</small></p>
     </li>    <li id="li_20" >
     <label class="description" for="cpath">*Course Path </label>
     <div>
@@ -375,4 +370,3 @@ function check_username_ajax(uname){
   </body>
 </html>
 
-​
